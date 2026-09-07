@@ -1,6 +1,6 @@
 # Munich Transport plugin — proposed plan
 
-Status: awaiting user acceptance. Research completed 2026-09-07; implementation has not started.
+Status: accepted by the user on 2026-09-07. Research completed; implementation authorized.
 
 Proposed repository: `paucommit/omarchy-munich-transport` (public source).
 Proposed plugin ID: `paucommit.munichtransport`.

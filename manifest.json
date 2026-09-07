@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "paucommit.munichtransport",
+  "name": "Munich Transport",
+  "version": "0.1.0",
+  "author": "paucommit",
+  "description": "Upcoming Munich public transport departures from a stop you choose.",
+  "kinds": ["bar-widget"],
+  "entryPoints": { "barWidget": "BarWidget.qml" },
+  "barWidget": {
+    "displayName": "Munich Transport",
+    "description": "Click to search for a stop and view departures.",
+    "category": "Info",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": { "station": null, "transportTypes": [] },
+    "schema": [
+      {
+        "key": "transportTypes",
+        "type": "multiselect",
+        "label": "Transport",
+        "description": "Leave empty to show all transport types.",
+        "noSelectionText": "All transport",
+        "options": [
+          { "value": "UBAHN", "label": "U-Bahn" },
+          { "value": "SBAHN", "label": "S-Bahn" },
+          { "value": "TRAM", "label": "Tram" },
+          { "value": "BUS", "label": "Bus" },
+          { "value": "REGIONAL_BUS", "label": "Regional bus" },
+          { "value": "BAHN", "label": "Regional train" },
+          { "value": "RUFTAXI", "label": "On-demand taxi" }
+        ]
+      }
+    ]
+  }
+}
