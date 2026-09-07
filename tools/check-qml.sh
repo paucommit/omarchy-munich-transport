@@ -2,12 +2,12 @@
 
 set -euo pipefail
 
-if command -v qmllint >/dev/null 2>&1; then
-  qmllint_bin=$(command -v qmllint)
-elif [[ -x /usr/lib/qt6/bin/qmllint ]]; then
-  qmllint_bin=/usr/lib/qt6/bin/qmllint
+if command -v qmlformat >/dev/null 2>&1; then
+  qmlformat_bin=$(command -v qmlformat)
+elif [[ -x /usr/lib/qt6/bin/qmlformat ]]; then
+  qmlformat_bin=/usr/lib/qt6/bin/qmlformat
 else
-  echo "qmllint not found" >&2
+  echo "qmlformat not found" >&2
   exit 1
 fi
 
@@ -17,7 +17,9 @@ if (( ${#qml_files[@]} == 0 )); then
   exit 1
 fi
 
-# Omarchy's qs.* modules and injected host facades cannot be fully resolved by
-# standalone qmllint. Its default warning threshold still fails parse errors
-# while unresolved-import and type-analysis warnings do not fail this check.
-"$qmllint_bin" --silent "${qml_files[@]}"
+# Parse without resolving Quickshell's host-only imports. Unlike qmllint, this
+# has the same syntax-only behavior on Ubuntu's Qt and current Omarchy Qt.
+# Discard formatting output; never rewrite the source or enforce a style.
+for qml_file in "${qml_files[@]}"; do
+  "$qmlformat_bin" "$qml_file" >/dev/null
+done

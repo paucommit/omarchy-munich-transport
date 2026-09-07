@@ -51,7 +51,7 @@ omarchy plugin validate .
 tools/check-qml.sh
 ```
 
-The QML check requires Qt 6's `qmllint` and checks tracked QML files. It is a syntax check: standalone Qt tooling cannot fully resolve Quickshell's `qs.*` imports and host interfaces. Actual loading, keyboard input, panel placement and settings persistence require a running Omarchy/Wayland session.
+The QML check uses Qt 6's `qmlformat` parser on tracked QML files and discards its output without changing their formatting. It is a syntax check: standalone Qt tooling cannot fully resolve Quickshell's `qs.*` imports and host interfaces. Actual loading, keyboard input, panel placement and settings persistence require a running Omarchy/Wayland session.
 
 GitHub Actions runs the offline tests, QML syntax check and the canonical Omarchy validator pinned to v4.0.2 commit `346e69e1cec6c4e8924531874af6ba010a1bc99e`. Tests use synthetic data and a deterministic clock; CI never calls MVG.
 
